@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\AddNotesController;
 use App\Models\Customer;
 /*
@@ -34,15 +36,18 @@ use App\Models\Customer;
 Route::get('/',  [HomeController::class, 'index']);
 Route::get('/about',  [AboutController::class, 'index']);
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'check']);
+
+Route::get('/logout', [LogoutController::class, 'index']);
+
+
 Route::get('/signup', [SignupController::class, 'index']);
 Route::post('/signup', [SignupController::class, 'store']);
+
 Route::get('/addNotes', [AddNotesController::class, 'index']);
-
-
 Route::post('/addNotes', [AddNotesController::class, 'store']);
+
 Route::get('/edit/{note_id}', [AddNotesController::class, 'edit']);
 Route::get('/delete/{note_id}', [AddNotesController::class, 'delete']);
 // Route::post('/customer', [CustomerController::class, 'store']);

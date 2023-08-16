@@ -1,4 +1,8 @@
-<!doctype html>
+<?php
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use Session;
+echo '<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -29,15 +33,29 @@
         <a class="nav-link" href="/about">About</a>
       </li>
       
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
+    </ul>';
+   
+    if(Session::has('username'))
+    {
+        
+        echo ' <form class="form-inline my-2 my-lg-0">
+          <p class="text-light mx-2">Welcome '.session("username").'
+            <a href="/logout"class="btn btn-outline-success my-2 my-sm-0 mx-2">Logout</button></a>
+           
+          </form>';
+    }
+    else{
+    echo '<form class="form-inline my-2 my-lg-0">
      
       <a href="/login"class="btn btn-outline-success my-2 my-sm-0 mx-2">Login</button></a>
       <a href="/signup" class="btn btn-outline-success my-2 my-sm-0 mx-2">Signup</button></a>
-    </form>
-  </div>
-</nav>
+    </form>';}
+    
+  echo '</div>
+</nav>';
 
-    <!-- Optional JavaScript -->
+  
+?>
+<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     

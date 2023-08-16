@@ -7,8 +7,15 @@ use App\Models\Note;
 
 class AddNotesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if(!$request->session()->has('username'))
+        {
+              
+  
+              return redirect('/login');
+          }
+          
         $url=url('/addNotes');
         $edit=false;
         $title="ADD NOTES HERE";
@@ -19,10 +26,15 @@ class AddNotesController extends Controller
     {
         // echo "This is controler";
         // die;
-        $note=new Note;
         
+        $note=new Note;
         $note->title=$req['title'];
         $note->desc=$req['desc'];
+       
+        //console.log("this is customer_id value",session()->get('customer_id'));
+         $note->user_id=$req->session()->get('customer_id'); 
+        //$note->user_id=1; 
+
         $note->save();
         return redirect('/');
     }

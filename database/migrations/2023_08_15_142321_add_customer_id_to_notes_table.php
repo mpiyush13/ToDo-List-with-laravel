@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notes', function (Blueprint $table) {
-            $table->id('note_id');
-            $table->string('title',20);
-            $table->text('desc');
-           
-
-            $table->timestamps();
-        });
+        Schema::table('notes', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned();
+        
+});
     }
 
     /**
@@ -26,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notes');
+        Schema::table('notes', function (Blueprint $table) {
+            //
+        });
     }
 };

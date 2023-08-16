@@ -14,10 +14,11 @@
           </tr>
         </thead>
         <tbody>
-           
+           <?php $i=0; ?>
           @foreach ($notes as $item)
+          <?php $i++; ?>
          <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{$i}}</th>
             <td>{{$item->title}}</td>
             <td>{{$item->desc}}</td>
             <td><div class="row"><a href="/edit/{{$item->note_id}}"class="btn btn-success my-2 my-sm-0 mx-2">Edit</button></a>
